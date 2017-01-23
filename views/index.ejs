@@ -1,25 +1,15 @@
-<!doctype html>
-<html>
-<head>
-  <title>Node Authentication</title>
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-  <style>
-    body        { padding-top:80px; }
-  </style>
-</head>
-<body>
-<div class="container">
+<% include ./partials/head %>
+<% include ./partials/header %>
 
-  <div class="jumbotron text-center">
-    <h1><span class="fa fa-lock"></span> Node Authentication</h1>
-
-    <p>Login or Register with:</p>
-
-    <a href="/auth/login" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a>
-    <a href="/auth/signup" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
-  </div>
-
+<div class="inner cover">
+  <h1 class="cover-heading">Node Authentication</h1>
+  <p class="lead">Login or Register with:</p>
+  <p class="lead">
+      <a href="/auth/login" class="btn btn-lg btn-default"><span class="fa fa-user"></span> Local Login</a>
+      <a href="/auth/signup" class="btn btn-lg btn-default"><span class="fa fa-user"></span> Local Signup</a>
+  </p>
 </div>
-</body>
-</html>
+<script>
+    document.getElementById("home").className = 'active';
+</script>
+<% include ./partials/footer %>

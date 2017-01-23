@@ -2,8 +2,13 @@ var express     = require('express');
 var router      = express.Router();
 var passport    = require('passport');
 
+var config = require('../config/app.js');
+
 router.get('/login', function(req, res, next) {
-    res.render('login', { message: req.flash('loginMessage')});
+    res.render('login', {
+        message: req.flash('loginMessage'),
+        config: config
+    });
 });
 
 router.post('/login', passport.authenticate('local-login', {
@@ -13,7 +18,10 @@ router.post('/login', passport.authenticate('local-login', {
 }));
 
 router.get('/signup', function(req, res, next) {
-    res.render('signup', {  message: req.flash('signupMessage') });
+    res.render('signup', {
+        message: req.flash('signupMessage'),
+        config: config
+    });
 });
 
 router.post('/signup', passport.authenticate('local-signup', {

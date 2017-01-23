@@ -1,4 +1,5 @@
 var LocalStrategy   = require('passport-local').Strategy;
+var moment          = require('moment');
 var User            = require('../models/user.js');
 
 module.exports = function(passport){
@@ -13,12 +14,11 @@ module.exports = function(passport){
     });
 
     passport.use('local-signup', new LocalStrategy({
-            // by default, local strategy uses username and password, we will override with email
             usernameField : 'username',
             passwordField : 'password',
             passReqToCallback : true // allows us to pass back the entire request to the callback
         },
-        function(req, username, password, done) {
+        function(req, username, password, done, email, fullname) {
             User.where({username: username}).fetch().asCallback(function(err, user) {
                 // if there are any errors, return the error
                 if (err)
@@ -29,10 +29,17 @@ module.exports = function(passport){
                     return done(null, false, req.flash('signupMessage', 'That username is already taken.'));
                 } else {
                     // save the user
-                    new User({ username: username, password: this.generateHash(password) }).save().then(function(user) {
+                    console.log(User.actualDate());
+                    new User({
+                        username: username,
+                        email: req.body.email,
+                        fullName: req.body.fullName,
+                        password: User.generateHash(password),
+                        created: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")
+                    }).save().then(function(user) {
                         if (err)
                             throw err;
-                        return done(null, user);
+                        return done(null, user, req.flash('loginMessage', 'The user '+req.body.fullName+' was create, You can log in now.'));
                     });
                 }
 
