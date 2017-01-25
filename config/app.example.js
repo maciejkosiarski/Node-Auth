@@ -2,7 +2,8 @@ module.exports = {
     'website': {
         title: 'Simple Authentication - passport.js + bookshelf.js',
         domain: 'localhost',
-        port: 3000
+        port: 3000,
+        env: '' //production or development
     },
     'security': {
         salt: 'yoursalt'
