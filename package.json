@@ -5,6 +5,17 @@
   "scripts": {
     "dev": "nodemon ./bin/www"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maciejkosiarski/Node-Auth.git"
+  },
+  "keywords": [
+    "passport",
+    "bookshelf",
+    "auth",
+    "node",
+    "mysql"
+  ],
   "dependencies": {
     "body-parser": "~1.15.2",
     "bookshelf": "^0.10.2",
